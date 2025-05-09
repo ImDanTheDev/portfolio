@@ -12,11 +12,11 @@
 	</div>
 
 	<div class="box items-center gap-6 px-4 text-nowrap">
-		<a href="#me" class="link text-[#f79337] hover:text-[#f79437c4]">PROJECTS</a>
+		<a href="/" class="link text-[#f79337] hover:text-[#f79437c4]">PROJECTS</a>
 		<span class="select-none">//</span>
-		<a href="#resume" class="link">RESUME</a>
+		<a href="/resume" class="link">RESUME</a>
 		<span class="select-none">//</span>
-		<a href="#thoughts" class="link">THOUGHTS</a>
+		<a href="/thoughts" class="link">THOUGHTS</a>
 	</div>
 
 	<div class="box items-center">
@@ -33,6 +33,21 @@
 <style>
 	.name {
 		line-height: 1em;
+	}
+	.blurry {
+		/*background: #00000000;
+		background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 50%);*/
+
+		/* Or */
+
+		background: #000000ff;
+		-webkit-mask-image: -webkit-gradient(
+			linear,
+			left 90%,
+			left bottom,
+			from(rgba(0, 0, 0, 1)),
+			to(rgba(0, 0, 0, 0))
+		);
 	}
 
 	.box {

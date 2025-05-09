@@ -1,9 +1,26 @@
 <script lang="ts">
 	import { Linkedin, Github, ChevronDown } from '@lucide/svelte';
+
+	let menuOpened = $state(false);
+
+	$effect(() => {
+		if (menuOpened) {
+			document.body.classList.add('fixed-position');
+		} else {
+			document.body.classList.remove('fixed-position');
+		}
+	});
 </script>
 
+{#if menuOpened}
+	<div
+		class="absolute top-0 right-0 left-0 z-15 h-dvh bg-[#000000AA] sm:hidden"
+		onclick={() => (menuOpened = false)}
+	></div>
+{/if}
+
 <div
-	class="sticky top-0 z-10 mx-auto flex h-[76px] max-w-[1465px] flex-row bg-black p-6 font-mono text-xl sm:hidden"
+	class="sticky top-0 z-15 mx-auto flex h-[76px] max-w-[1465px] flex-row bg-black p-6 font-mono text-xl sm:hidden"
 >
 	<div class="box items-center">
 		<div class="name mr-auto">
@@ -11,22 +28,18 @@
 		</div>
 	</div>
 
-	<div class="box flex flex-col items-center gap-1 px-4">
-		<div class="group flex flex-row justify-center gap-1">
-			<label for="side-menu" class="flex flex-row items-center"
-				><span class="link text-[#f79337] hover:text-[#f79437c4]">PROJECTS</span>
-				<ChevronDown /></label
+	<div class="box relative flex flex-col items-center gap-1 px-4">
+		<div class="">
+			<div
+				role="button"
+				tabindex={-1}
+				class="flex flex-row items-center gap-1"
+				onclick={() => (menuOpened = !menuOpened)}
 			>
-			<input id="side-menu" class="flex hidden flex-row items-center" type="checkbox" />
+				<span class="link text-[#f79337] hover:text-[#f79437c4]">PROJECTS</span>
+				<ChevronDown />
+			</div>
 		</div>
-		<div class="hidden flex-col group-has-[:checked]:flex">
-			<span>RESUME</span>
-			<span>THOUGHTS</span>
-		</div>
-		<!-- <span class="select-none">//</span>
-		<a href="#resume" class="link">RESUME</a>
-		<span class="select-none">//</span>
-		<a href="#thoughts" class="link">THOUGHTS</a> -->
 	</div>
 
 	<div class="box items-center">
@@ -40,9 +53,35 @@
 	class="blurry sticky top-19 z-10 mx-auto flex h-8 max-w-[1465px] flex-row font-mono text-xl sm:hidden"
 ></div>
 
+{#if menuOpened}
+	<div
+		class="absolute top-16 right-6 left-6 z-20 flex flex-col content-start items-start rounded-b-xl border-x-1 border-b-1 border-white font-mono text-2xl backdrop-blur-lg sm:hidden"
+	>
+		<div class="flex flex-col">
+			<a href="#resume" class="flex flex-row p-2 px-8">RESUME</a>
+			<a href="#thoughts" class="flex flex-row p-2 px-8">THOUGHTS</a>
+		</div>
+	</div>
+{/if}
+
 <style>
 	.name {
 		line-height: 1em;
+	}
+	.blurry {
+		/*background: #00000000;
+		background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 50%);*/
+
+		/* Or */
+
+		background: #000000ff;
+		-webkit-mask-image: -webkit-gradient(
+			linear,
+			left 90%,
+			left bottom,
+			from(rgba(0, 0, 0, 1)),
+			to(rgba(0, 0, 0, 0))
+		);
 	}
 
 	.box {
@@ -57,10 +96,5 @@
 
 	.box:last-child > div {
 		margin-left: auto;
-	}
-
-	.link:hover {
-		filter: brightness(85%);
-		transform: translateY(1px);
 	}
 </style>

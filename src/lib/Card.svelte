@@ -1,5 +1,5 @@
 <script lang="ts">
-	type CardSide = 'left' | 'right';
+	type CardSide = 'left' | 'right' | 'left-alt';
 	type CardProps = {
 		side: CardSide;
 		title: string;
@@ -7,14 +7,15 @@
 		path: string;
 		time: string;
 		tags: string[];
+		topConnector?: boolean;
 	};
-	let { side, title, description, path, time, tags }: CardProps = $props();
+	let { side, title, description, path, time, tags, topConnector }: CardProps = $props();
 </script>
 
 <div
 	class="relative flex max-w-[648px] flex-col rounded-lg border-2 border-white p-2 font-mono backdrop-blur-[1px]"
 >
-	{#if side == 'left'}
+	{#if side == 'left' || side == 'left-alt'}
 		<span class="absolute -top-6 right-2 text-sm text-nowrap text-zinc-400">{time}</span>
 	{:else if side == 'right'}
 		<span class="absolute -top-6 left-2 text-sm text-nowrap text-zinc-400">{time}</span>
@@ -37,6 +38,17 @@
 	{#if side == 'left'}
 		<div
 			class="absolute top-4 -right-8 h-[100vh] w-8 rounded-tr-full border-t-3 border-r-3 border-white lg:-right-16 lg:w-16"
+		>
+			<div class="dot absolute -top-2 h-4 w-2 rounded-r-full bg-white"></div>
+		</div>
+	{:else if side == 'left-alt'}
+		{#if topConnector}
+			<div
+				class="absolute -top-7 -right-5 z-30 h-16 border-t-3 border-r-3 border-white lg:-right-16 lg:w-16"
+			></div>
+		{/if}
+		<div
+			class="absolute top-4 -right-5 h-full w-5 rounded-tr-full border-t-3 border-r-3 border-white lg:-right-16 lg:w-16"
 		>
 			<div class="dot absolute -top-2 h-4 w-2 rounded-r-full bg-white"></div>
 		</div>
