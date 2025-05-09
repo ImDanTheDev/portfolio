@@ -1,7 +1,7 @@
 import { json } from '@sveltejs/kit'
 import type { Post } from '$lib/types'
 
-async function getPosts() {
+async function getPosts(onlyShowcased: boolean) {
     let posts: Post[] = []
 
     const paths = import.meta.glob('/src/posts/*.md', { eager: true })
@@ -13,7 +13,7 @@ async function getPosts() {
         if (file && typeof file === 'object' && 'metadata' in file && slug) {
             const metadata = file.metadata as Omit<Post, 'slug'>
             const post = { ...metadata, slug } satisfies Post
-            post.published && posts.push(post)
+            post.published && (!onlyShowcased || (onlyShowcased && post.project_showcase)) && posts.push(post)
         }
     }
 
@@ -24,7 +24,8 @@ async function getPosts() {
     return posts
 }
 
-export async function GET() {
-    const posts = await getPosts()
+export async function GET({ request, params, url }) {
+    let onlyShowcased = url.searchParams.get("only_showcase") === 'true'
+    const posts = await getPosts(onlyShowcased)
     return json(posts)
 }

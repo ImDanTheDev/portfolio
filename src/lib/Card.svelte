@@ -1,6 +1,6 @@
 <script lang="ts">
-	type CardSide = 'left' | 'right' | 'left-alt';
-	type CardProps = {
+	export type CardSide = 'left' | 'right' | 'left-alt';
+	export type CardProps = {
 		side: CardSide;
 		title: string;
 		description: string;

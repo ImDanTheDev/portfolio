@@ -1,44 +1,23 @@
 <script lang="ts">
+	import type { CardProps } from '$lib/Card.svelte';
+	import Timeline from '$lib/Timeline.svelte';
+
 	let { data } = $props();
+
+	let alternate = false;
+
+	let items = data.posts.map((x) => {
+		let data: CardProps = {
+			title: x.title,
+			description: x.description,
+			time: x.date,
+			tags: x.categories,
+			path: '',
+			side: alternate ? 'right' : 'left'
+		};
+		alternate = !alternate;
+		return data;
+	});
 </script>
 
-<section>
-	<ul class="posts">
-		{#each data.posts as post}
-			<li class="post">
-				<a href={`/thoughts/${post.slug}`} class="title">{post.title}</a>
-				<p class="date">{post.date}</p>
-				<p class="description">{post.description}</p>
-			</li>
-		{/each}
-	</ul>
-</section>
-
-<style>
-	.posts {
-		display: grid;
-		gap: var(--size-7);
-
-		.post {
-			max-inline-size: var(--size-content-3);
-
-			&:not(:last-child) {
-				border-bottom: 1px solid var(--border);
-				padding-bottom: var(--size-7);
-			}
-
-			.title {
-				font-size: var(--font-size-fluid-3);
-				text-transform: capitalize;
-			}
-
-			.date {
-				color: var(--text-2);
-			}
-
-			.description {
-				margin-top: var(--size-3);
-			}
-		}
-	}
-</style>
+<Timeline {items} />

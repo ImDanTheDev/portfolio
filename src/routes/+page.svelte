@@ -1,11 +1,22 @@
 <script lang="ts">
-	import Card from '$lib/Card.svelte';
-	import Content from '$lib/Content.svelte';
-	import MobileContent from '$lib/MobileContent.svelte';
-	import MobileNavBar from '$lib/MobileNavBar.svelte';
-	import NavBar from '$lib/NavBar.svelte';
-	import { ArrowUp } from '@lucide/svelte';
+	import type CardProps from '$lib/Card.svelte';
+	import Timeline from '$lib/Timeline.svelte';
+
+	let { data } = $props();
+
+	let alternate = false;
 </script>
 
-<Content />
-<MobileContent />
+<Timeline
+	items={data.posts.map((x) => {
+		alternate = !alternate;
+		return {
+			description: x.description,
+			path: x.subtitle,
+			title: x.title,
+			tags: x.categories,
+			time: x.date,
+			side: alternate ? 'right' : 'left'
+		} as CardProps;
+	})}
+/>
