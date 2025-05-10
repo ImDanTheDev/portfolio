@@ -16,6 +16,7 @@
 			title: x.title,
 			tags: x.categories,
 			time: x.date,
+			slug: x.slug,
 			side: alternate ? 'right' : 'left'
 		} as CardProps;
 	})}

@@ -1,5 +1,7 @@
 <script lang="ts">
-	import { Linkedin, Github } from '@lucide/svelte';
+	import links from '$lib/links';
+	import { page } from '$app/state';
+	import nav from './nav';
 </script>
 
 <div
@@ -11,18 +13,22 @@
 		</div>
 	</div>
 
-	<div class="box items-center gap-6 px-4 text-nowrap">
-		<a href="/" class="link text-[#f79337] hover:text-[#f79437c4]">PROJECTS</a>
-		<span class="select-none">//</span>
-		<a href="/resume" class="link">RESUME</a>
-		<span class="select-none">//</span>
-		<a href="/thoughts" class="link">THOUGHTS</a>
-	</div>
+	<ul class="box items-center gap-6 px-4 text-nowrap">
+		{#each nav as link}
+			<li aria-current={page.url.pathname === link.url ? 'page' : undefined}>
+				<a class="link" href={link.url}>{link.label}</a>
+			</li>
+			<span class="select-none last:hidden">//</span>
+		{/each}
+	</ul>
 
 	<div class="box items-center">
 		<div class="ml-auto flex flex-row gap-4">
-			<a href="#linkedin"><Linkedin /></a>
-			<a href="#github"><Github /></a>
+			{#each links as { url, icon: Icon }}
+				<a href={url}>
+					<Icon />
+				</a>
+			{/each}
 		</div>
 	</div>
 </div>
@@ -67,5 +73,9 @@
 	.link:hover {
 		filter: brightness(85%);
 		transform: translateY(1px);
+	}
+
+	li[aria-current='page'] {
+		@apply text-[#f79337] hover:text-[#f79437c4];
 	}
 </style>

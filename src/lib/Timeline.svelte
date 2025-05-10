@@ -44,7 +44,7 @@
 </div>
 
 <div class="flex flex-col gap-10 py-2 pr-8 pl-4 sm:hidden">
-	{#each items.filter((x: CardProps) => x.side === 'right') as item, i}
+	{#each items as item, i}
 		<Card {...item} side="left-alt" topConnector={i !== 0} />
 	{/each}
 </div>

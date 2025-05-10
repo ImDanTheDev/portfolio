@@ -12,7 +12,8 @@
 			description: x.description,
 			time: x.date,
 			tags: x.categories,
-			path: '',
+			path: x.subtitle,
+			slug: x.slug,
 			side: alternate ? 'right' : 'left'
 		};
 		alternate = !alternate;

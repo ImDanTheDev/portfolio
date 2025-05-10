@@ -4,7 +4,7 @@
 
 <div class="px-6 pb-6">
 	<div
-		class="mx-auto flex max-w-3xl flex-col rounded-lg border-2 border-white p-2 font-mono backdrop-blur-[1px]"
+		class="mx-auto flex max-w-3xl flex-col overflow-hidden rounded-lg border-2 border-white p-2 font-mono backdrop-blur-[1px]"
 	>
 		<div class="flex flex-row justify-between text-lg">
 			<span>"~/resume"</span>

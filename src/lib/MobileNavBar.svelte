@@ -1,5 +1,9 @@
 <script lang="ts">
-	import { Linkedin, Github, ChevronDown } from '@lucide/svelte';
+	import { ChevronDown } from '@lucide/svelte';
+	import links from '$lib/links';
+	import nav from './nav';
+	import { page } from '$app/state';
+	import { onNavigate } from '$app/navigation';
 
 	let menuOpened = $state(false);
 
@@ -9,6 +13,10 @@
 		} else {
 			document.body.classList.remove('fixed-position');
 		}
+	});
+
+	onNavigate(() => {
+		menuOpened = false;
 	});
 </script>
 
@@ -36,7 +44,9 @@
 				class="flex flex-row items-center gap-1"
 				onclick={() => (menuOpened = !menuOpened)}
 			>
-				<span class="link text-[#f79337] hover:text-[#f79437c4]">PROJECTS</span>
+				<span class="link text-[#f79337] hover:text-[#f79437c4]"
+					>{nav.find((x) => x.url === page.url.pathname)?.label || '?'}</span
+				>
 				<ChevronDown />
 			</div>
 		</div>
@@ -44,8 +54,11 @@
 
 	<div class="box items-center">
 		<div class="ml-auto flex flex-row gap-4">
-			<a href="#linkedin"><Linkedin /></a>
-			<a href="#github"><Github /></a>
+			{#each links as { url, icon: Icon }}
+				<a href={url}>
+					<Icon />
+				</a>
+			{/each}
 		</div>
 	</div>
 </div>
@@ -57,10 +70,13 @@
 	<div
 		class="absolute top-16 right-6 left-6 z-20 flex flex-col content-start items-start rounded-b-xl border-x-1 border-b-1 border-white font-mono text-2xl backdrop-blur-lg sm:hidden"
 	>
-		<div class="flex flex-col">
-			<a href="#resume" class="flex flex-row p-2 px-8">RESUME</a>
-			<a href="#thoughts" class="flex flex-row p-2 px-8">THOUGHTS</a>
-		</div>
+		<ul class="flex flex-col">
+			{#each nav as link}
+				<li aria-current={page.url.pathname === link.url ? 'page' : undefined}>
+					<a href={link.url} class="flex flex-row p-2 px-8">{link.label}</a>
+				</li>
+			{/each}
+		</ul>
 	</div>
 {/if}
 
@@ -96,5 +112,9 @@
 
 	.box:last-child > div {
 		margin-left: auto;
+	}
+
+	li[aria-current='page'] {
+		@apply text-[#f79337] hover:text-[#f79437c4];
 	}
 </style>
