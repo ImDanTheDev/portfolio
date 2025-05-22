@@ -15,7 +15,12 @@
 
 	<ul class="box items-center gap-6 px-4 text-nowrap">
 		{#each nav as link}
-			<li aria-current={page.url.pathname === link.url ? 'page' : undefined}>
+			<li
+				aria-current={page.url.pathname === link.url ||
+				(page.url.pathname.startsWith('/thoughts') && link.url.startsWith('/thoughts'))
+					? 'page'
+					: undefined}
+			>
 				<a class="link" href={link.url}>{link.label}</a>
 			</li>
 			<span class="select-none last:hidden">//</span>

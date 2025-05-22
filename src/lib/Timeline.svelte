@@ -18,7 +18,7 @@
 	let { items } = $props();
 </script>
 
-<div class="hidden h-full flex-row gap-[57px] overflow-hidden px-6 pt-10 sm:flex lg:gap-[121px]">
+<div class="hidden h-full flex-row gap-[57px] overflow-hidden px-6 pt-8 sm:flex lg:gap-[121px]">
 	<div class="flex h-full shrink-1 basis-[50%] flex-col items-end gap-16">
 		{#each items.filter((x: CardProps) => x.side === 'left') as item}
 			<Card {...item} />

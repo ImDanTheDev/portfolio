@@ -7,6 +7,13 @@
 	let alternate = false;
 </script>
 
+<div class="mx-auto max-w-xl px-6 pb-6">
+	<p class="text-zinc-400">
+		Below is a timeline of some of my projects. Each project has a corresponding page dedicated to
+		it, so click on any of them for a <i>chance</i> at learning more about the project.
+	</p>
+</div>
+
 <Timeline
 	items={data.posts.map((x) => {
 		alternate = !alternate;

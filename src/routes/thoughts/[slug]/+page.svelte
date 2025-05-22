@@ -2,46 +2,24 @@
 	let { data } = $props();
 </script>
 
-<article>
-	<hgroup>
-		<h1>{data.meta.title}</h1>
-		<p>Published at {data.meta.date}</p>
-	</hgroup>
+<div class="px-6">
+	<div class="mx-auto flex max-w-4xl flex-col gap-1 rounded-lg border-2 border-white p-2">
+		<h1 class="text-3xl">{data.meta.title}</h1>
+		<div class="flex flex-row gap-2 pb-3">
+			<p class="text-zinc-400">{data.meta.date}</p>
 
-	<div class="tags">
-		{#each data.meta.categories as category}
-			<span class="surface-4">&num;{category}</span>
-		{/each}
+			<div class="flex flex-row flex-wrap items-center gap-1">
+				{#each data.meta.categories as category}
+					<div
+						class="shrink-0 grow-0 rounded-full bg-[#f79337] px-2 text-sm font-bold text-[#573515]"
+					>
+						{category}
+					</div>
+				{/each}
+			</div>
+		</div>
+		<div class="text-lg">
+			<data.content />
+		</div>
 	</div>
-
-	<div class="prose">
-		<data.content />
-	</div>
-</article>
-
-<style>
-	article {
-		max-inline-size: var(--size-content-3);
-		margin-inline: auto;
-
-		h1 {
-			text-transform: capitalize;
-		}
-
-		h1 + p {
-			margin-top: var(--size-2);
-			color: var(--text-2);
-		}
-
-		.tags {
-			display: flex;
-			gap: var(--size-3);
-			margin-top: var(--size-7);
-
-			> * {
-				padding: var(--size-2) var(--size-3);
-				border-radius: var(--radius-round);
-			}
-		}
-	}
-</style>
+</div>

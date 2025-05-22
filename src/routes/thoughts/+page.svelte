@@ -21,4 +21,10 @@
 	});
 </script>
 
+<div class="mx-auto max-w-xl px-6 pb-6">
+	<span class="mx-auto text-zinc-400">
+		I'm not much of a writer, so consider yourself lucky if there's anything of substance here. 😃
+	</span>
+</div>
+
 <Timeline {items} />
