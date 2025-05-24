@@ -8,7 +8,7 @@ categories:
   - game dev
   - odin
   - 2d
-published: true
+published: false
 ---
 
 More info about chaos

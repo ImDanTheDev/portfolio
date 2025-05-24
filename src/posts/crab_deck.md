@@ -8,7 +8,7 @@ categories:
   - rust
   - raspberry pi
   - 3d printing
-published: true
+published: false
 ---
 
 More info about crab deck

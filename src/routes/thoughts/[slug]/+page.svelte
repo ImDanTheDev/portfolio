@@ -18,7 +18,9 @@
 				{/each}
 			</div>
 		</div>
-		<div class="text-lg">
+		<div
+			class="text-lg [&_a]:text-[#f79337] [&_a]:hover:underline [&_h1]:mb-2 [&_h1]:text-2xl [&_h1]:font-bold [&_img]:rounded-lg [&_img]:p-4 [&_img]:outline [&_img]:outline-zinc-700 [&_p]:mb-4"
+		>
 			<data.content />
 		</div>
 	</div>
