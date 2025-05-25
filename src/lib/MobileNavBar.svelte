@@ -45,7 +45,11 @@
 				onclick={() => (menuOpened = !menuOpened)}
 			>
 				<span class="link text-[#f79337] hover:text-[#f79437c4]"
-					>{nav.find((x) => x.url === page.url.pathname)?.label || '?'}</span
+					>{nav.find(
+						(x) =>
+							x.url === page.url.pathname ||
+							(page.url.pathname.startsWith('/thoughts') && x.url.startsWith('/thoughts'))
+					)?.label || '?'}</span
 				>
 				<ChevronDown />
 			</div>
@@ -68,7 +72,7 @@
 
 {#if menuOpened}
 	<div
-		class="absolute top-16 right-6 left-6 z-20 flex flex-col content-start items-start rounded-b-xl border-x-1 border-b-1 border-white font-mono text-2xl backdrop-blur-lg sm:hidden"
+		class="absolute top-16 right-6 left-6 z-20 flex flex-col rounded-b-xl border-x-1 border-b-1 border-white font-mono text-2xl backdrop-blur-lg sm:hidden"
 	>
 		<ul class="flex flex-col">
 			{#each nav as link}
