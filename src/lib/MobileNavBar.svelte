@@ -48,7 +48,7 @@
 					>{nav.find(
 						(x) =>
 							x.url === page.url.pathname ||
-							(page.url.pathname.startsWith('/thoughts') && x.url.startsWith('/thoughts'))
+							(page.url.pathname.startsWith('/project') && x.url === '/')
 					)?.label || '?'}</span
 				>
 				<ChevronDown />

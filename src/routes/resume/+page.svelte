@@ -12,9 +12,6 @@
 		class="relative flex flex-col gap-2 rounded-lg border-2 border-white p-2 font-[garamond] text-sm backdrop-blur-[1px]"
 	>
 		<div class="flex flex-col">
-			<span class="absolute -top-6 right-2 font-mono text-sm text-nowrap text-zinc-400"
-				>2025-5-5</span
-			>
 			<span class="mx-auto text-xl font-bold">DANIEL MOTT</span>
 			<span class="mx-auto"
 				>Columbus, OH | P: +1 614 816 9130 | dmott248@gmail.com | <a
@@ -210,4 +207,7 @@
 			</div>
 		</div>
 	</div>
+	<span class="mx-auto text-xs"
+		>Last Updated: <span class="font-mono text-zinc-400">2025-5-5</span></span
+	>
 </div>
