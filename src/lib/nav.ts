@@ -9,7 +9,4 @@ export default [{
 }, {
     label: "RESUME",
     url: "/resume"
-}, {
-    label: "THOUGHTS",
-    url: "/thoughts"
 }] as Link[];

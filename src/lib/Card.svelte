@@ -1,16 +1,28 @@
 <script lang="ts">
+	import { Github, Globe, BookOpenText, Link } from '@lucide/svelte';
+	import type { Snippet } from 'svelte';
+
 	export type CardSide = 'left' | 'right' | 'left-alt';
 	export type CardProps = {
 		side: CardSide;
 		title: string;
 		description: string;
-		path: string;
 		time: string;
 		tags: string[];
 		topConnector?: boolean;
 		slug: string;
+		actions: CardAction[];
 	};
-	let { side, title, description, path, time, tags, topConnector, slug }: CardProps = $props();
+	export type CardAction =
+		| {
+				kind: 'website' | 'github';
+				url: string;
+		  }
+		| {
+				kind: 'blog';
+		  };
+
+	let { side, title, description, actions, time, tags, topConnector, slug }: CardProps = $props();
 </script>
 
 <div
@@ -21,10 +33,21 @@
 	{:else if side == 'right'}
 		<span class="absolute -top-6 left-2 text-sm text-nowrap text-zinc-400">{time}</span>
 	{/if}
-	<a href={`/thoughts/${slug}`} class="card-inner p-2">
+	<div class="card-inner p-2">
 		<div class="flex flex-row justify-between text-lg">
-			<span>{path}</span>
-			<span>({title})</span>
+			<span>{title}</span>
+			<div class="flex flex-row gap-2">
+				<span class="my-auto text-sm font-bold text-zinc-400 sm:hidden md:flex">See More:</span>
+				{#each actions as action}
+					{#if action.kind === 'github'}
+						<a href={action.url} class="card-action" title="GitHub"><Github /></a>
+					{:else if action.kind === 'website'}
+						<a href={action.url} class="card-action" title="Visit"><Link /></a>
+					{:else if action.kind === 'blog'}
+						<a href={`/project/${slug}`} class="card-action" title="Blog Post"><BookOpenText /></a>
+					{/if}
+				{/each}
+			</div>
 		</div>
 		<span class="text-zinc-400">
 			{description}
@@ -39,7 +62,7 @@
 				</div>
 			{/each}
 		</div>
-	</a>
+	</div>
 	{#if side == 'left'}
 		<div
 			class="absolute top-4 -right-8 h-[100vh] w-8 rounded-tr-full border-t-3 border-r-3 border-white lg:-right-16 lg:w-16"
@@ -67,21 +90,25 @@
 </div>
 
 <style>
-	.card-inner {
-		-webkit-box-shadow: 0px 0px 8px 3px rgba(247, 148, 55, 0);
+	.card-action {
+		/* -webkit-box-shadow: 0px 0px 8px 3px rgba(247, 148, 55, 0);
 		-moz-box-shadow: 0px 0px 8px 3px rgba(247, 148, 55, 0);
 		box-shadow:
 			0px 0px 8px 3px rgba(247, 148, 55, 0),
 			inset 0px 0px 6px 1px rgba(247, 148, 55, 0);
-		transition: box-shadow 1.6s cubic-bezier(0.16, 1, 0.3, 1);
+		transition: box-shadow 1.6s cubic-bezier(0.16, 1, 0.3, 1); */
+		transition: color 1.6s cubic-bezier(0.16, 1, 0.3, 1);
+		color: white;
 	}
 
-	.card-inner:hover {
-		-webkit-box-shadow: 0px 0px 8px 3px rgba(247, 148, 55, 0.9);
+	.card-action:hover {
+		/* -webkit-box-shadow: 0px 0px 8px 3px rgba(247, 148, 55, 0.9);
 		-moz-box-shadow: 0px 0px 8px 3px rgba(247, 148, 55, 0.9);
 		box-shadow:
 			0px 0px 8px 3px rgba(247, 148, 55, 0.7),
 			inset 0px 0px 6px 1px rgba(247, 148, 55, 0.7);
-		transition: box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+		transition: box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1); */
+		transition: color 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+		color: #f79337;
 	}
 </style>

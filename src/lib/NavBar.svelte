@@ -17,7 +17,7 @@
 		{#each nav as link}
 			<li
 				aria-current={page.url.pathname === link.url ||
-				(page.url.pathname.startsWith('/thoughts') && link.url.startsWith('/thoughts'))
+				(page.url.pathname.startsWith('/project') && link.url === '/')
 					? 'page'
 					: undefined}
 			>

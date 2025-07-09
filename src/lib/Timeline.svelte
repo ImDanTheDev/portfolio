@@ -3,14 +3,6 @@
 	import type { CardProps } from './Card.svelte';
 	import Card from './Card.svelte';
 
-	// type Props = {
-	// 	subtitle?: string;
-	// 	title: string;
-	// 	content: string;
-	// 	tags: string[];
-	// };
-	// let { subtitle, title, content, tags }: Props = $props();
-
 	type Props = {
 		items: CardProps[];
 	};

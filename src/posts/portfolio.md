@@ -1,7 +1,6 @@
 ---
 title: Portfolio
-subtitle: ~/web_dev/portfolio
-description: Developed with Svelte and Tailwind, this website exists to showcase any projects that I think are worth sharing. There might not be much here, especially finished projects, but it's something. Besides projects, my resume can be found up top alongside a blog for random thoughts or more inforamtion about my projects.
+description: Developed with Svelte and Tailwind, this website exists to showcase any projects that I think are worth sharing, and my resume. There might not be much here right now, but more projects will be added here eventually.
 date: '2025-5-8'
 project_showcase: true
 categories:
@@ -9,6 +8,13 @@ categories:
   - svelte
   - typescript
 published: true
+actions:
+  - url: https://imdanthe.dev
+    kind: website
+  - url: https://github.com/ImDanTheDev/portfolio
+    kind: github
+  - url:
+    kind: blog
 ---
 
 # Getting Started
@@ -29,7 +35,7 @@ Although I could've written these simple blog posts as standard Svelte pages, I 
 
 # Tech Stack
 
-As you might have seen on the [main thoughts page](/thoughts), I'm not much of a writer, so now here comes the part where I lose interest in writing, and spew out the remaining details involved in making this website.
+I'm not much of a writer, so now here comes the part where I lose interest in writing, and spew out the remaining details involved in making this website.
 - Built with: SvelteKit, TypeScript, Tailwind, Lucide Icons, Markdown, and Bun
 - Edited in: VS Code
 - Hosted on: Vercel (for free!)
